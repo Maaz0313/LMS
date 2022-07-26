@@ -54,7 +54,7 @@ Name VARCHAR(50),
 Gender VARCHAR(50),
 Age INT,
 Position VARCHAR(50),
-Office VARCHAR(50),
+--Office VARCHAR(50),
 HireDate VARCHAR(50),
 Salary INT,
 DepartmentId INT FOREIGN KEY REFERENCES Departments(DeptID)
@@ -75,14 +75,7 @@ GO
 -- Firstly, create above 3 tables only & apply role-based authentication alongwith forms authentication 
 -- href: https://dotnettutorials.net/lesson/forms-authentication-in-mvc/ /*relating emp & users table*/
 GO
-/*
-Roles within the system:
 
-webmaster (software.technician)
-admin (institution admin)
-staff (institution staff)
-student (regular user; has most data)
-*/
 GO
 -- Inserting data into Role Master table
 INSERT INTO RoleMaster VALUES('Admin')
@@ -97,7 +90,7 @@ INSERT INTO Users VALUES('Faculty','faculty')
 INSERT INTO Users VALUES('Student','student')
 GO
 --number 1 for admin
---number 2 for webmaster
+--number 2 for employee
 --number 3 for faculty
 --number 4 for students
 GO
@@ -107,9 +100,9 @@ INSERT INTO RolesMapper VALUES(2, 1, 2)
 INSERT INTO RolesMapper VALUES(3, 1, 3)
 INSERT INTO RolesMapper VALUES(4, 2, 2)
 --INSERT INTO RolesMapper VALUES(5, 3, 3)
-
+GO
 -- Inserting data into Employee table
-INSERT INTO Employee VALUES('Anurag', 'Software Engineer', 10000)
+INSERT INTO Employee VALUES('Anurag', 'Male', 22, 'Teacher')
 INSERT INTO Employee VALUES('Preety', 'Tester', 20000)
 INSERT INTO Employee VALUES('Priyanka', 'Software Engineer', 20000)
 INSERT INTO Employee VALUES('Ramesh', 'Team Lead', 10000)
@@ -122,7 +115,7 @@ F_id int primary key identity(0,1),
 F_name varchar(MAX) not null,
 Email varchar(MAX) not null,
 Contact bigint not null,
-F_User int not null foreign key references dbo.Users(UserID)
+F_User int not null foreign key references dbo.Users(ID)
 )
 GO
 create table Batch_Details
@@ -159,7 +152,7 @@ D_O_B date not null,
 Email varchar(255) not null,
 Contact bigint not null,
 D_O_A date not null,
-User_ int not null foreign key references dbo.Users(userid), /*userid = rolename*/
+User_ int not null foreign key references dbo.Users(ID), /*userid = rolename*/
 Batch varchar(255) not null,
 Course varchar(15) not null foreign key references Course_Details(Course_Code)
 )
