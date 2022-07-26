@@ -101,15 +101,19 @@ INSERT INTO RolesMapper VALUES(3, 1, 3)
 INSERT INTO RolesMapper VALUES(4, 2, 2)
 --INSERT INTO RolesMapper VALUES(5, 3, 3)
 GO
+-- Inserting data into Departments table
+INSERT INTO Departments VALUES(1,'Admin')
+INSERT INTO Departments VALUES(2,'Faculty')
+INSERT INTO Departments VALUES(3,'Student')
+GO
 -- Inserting data into Employee table
-INSERT INTO Employee VALUES('Anurag', 'Male', 22, 'Teacher')
-INSERT INTO Employee VALUES('Preety', 'Tester', 20000)
-INSERT INTO Employee VALUES('Priyanka', 'Software Engineer', 20000)
-INSERT INTO Employee VALUES('Ramesh', 'Team Lead', 10000)
-INSERT INTO Employee VALUES('Santosh', 'Tester', 15000)
+INSERT INTO Employee VALUES('Anurag', 'Male', 22, 'Teacher', '27-7-2022', 20000,2)
+INSERT INTO Employee VALUES('Sandeep', 'Male', 22, 'Teacher', '23-7-2022', 20000,2)
+INSERT INTO Employee VALUES('Preeti', 'Female', 22, 'Teacher', '27-7-2022', 20000,2)
+INSERT INTO Employee VALUES('Anurag', 'Female', 22, 'Teacher', '27-7-2022', 20000,2)
 GO
 --********First create and insert above work in Database then apply role-based authentication in VS********
-create table Faculty
+create table Faculty_Details
 (
 F_id int primary key identity(0,1),
 F_name varchar(MAX) not null,
@@ -144,7 +148,7 @@ Fee bigint not null
 GO
 						-- For Student Signup:
 GO
-create table Student
+create table Student_Details
 (
 Std_Id int primary key identity,
 C_Name varchar(MAX) not null,
