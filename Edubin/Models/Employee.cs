@@ -14,9 +14,15 @@ namespace Edubin.Models
     
     public partial class Employee
     {
-        public int ID { get; set; }
+        public int EmpID { get; set; }
         public string Name { get; set; }
-        public string Designation { get; set; }
+        public string Gender { get; set; }
+        public Nullable<int> Age { get; set; }
+        public string Position { get; set; }
+        public string HireDate { get; set; }
         public Nullable<int> Salary { get; set; }
+        public Nullable<int> DepartmentId { get; set; }
+    
+        public virtual Department Department { get; set; }
     }
 }

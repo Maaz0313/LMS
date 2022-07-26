@@ -4,15 +4,83 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EdubinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EdubinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Batch_Details">
+          <Key>
+            <PropertyRef Name="Batch_Code" />
+          </Key>
+          <Property Name="Batch_Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Batch_Start" Type="date" Nullable="false" />
+          <Property Name="Batch_end" Type="date" Nullable="false" />
+          <Property Name="Timing" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Faculty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course_Details">
+          <Key>
+            <PropertyRef Name="Course_Code" />
+          </Key>
+          <Property Name="Course_Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Course_Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Course_fee" Type="bigint" Nullable="false" />
+          <Property Name="Batch" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course_Fee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Fee" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DeptID" />
+          </Key>
+          <Property Name="DeptID" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="EmpID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Position" Type="varchar" MaxLength="50" />
+          <Property Name="HireDate" Type="varchar" MaxLength="50" />
           <Property Name="Salary" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Exam_Details">
+          <Key>
+            <PropertyRef Name="Exam_Id" />
+          </Key>
+          <Property Name="Exam_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Exam_Date" Type="date" Nullable="false" />
+          <Property Name="Exam_Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Student" Type="int" />
+        </EntityType>
+        <EntityType Name="Exam_Result">
+          <Key>
+            <PropertyRef Name="Result_Id" />
+          </Key>
+          <Property Name="Result_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Exam" Type="int" Nullable="false" />
+          <Property Name="Student" Type="int" />
+          <Property Name="Total_Marks" Type="int" Nullable="false" />
+          <Property Name="Obtained_Marks" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faculty_Details">
+          <Key>
+            <PropertyRef Name="F_id" />
+          </Key>
+          <Property Name="F_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="F_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" Nullable="false" />
+          <Property Name="Contact" Type="bigint" Nullable="false" />
+          <Property Name="F_User" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleMaster">
           <Key>
@@ -29,6 +97,30 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Student_Details">
+          <Key>
+            <PropertyRef Name="Std_Id" />
+          </Key>
+          <Property Name="Std_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="D_O_B" Type="date" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Contact" Type="bigint" Nullable="false" />
+          <Property Name="D_O_A" Type="date" Nullable="false" />
+          <Property Name="User_" Type="int" Nullable="false" />
+          <Property Name="Batch" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -37,7 +129,115 @@
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="UserPassword" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__RolesMapp__RoleI__2A4B4B5E">
+        <Association Name="FK__Batch_Det__Facul__47DBAE45">
+          <End Role="Faculty_Details" Type="Self.Faculty_Details" Multiplicity="1" />
+          <End Role="Batch_Details" Type="Self.Batch_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty_Details">
+              <PropertyRef Name="F_id" />
+            </Principal>
+            <Dependent Role="Batch_Details">
+              <PropertyRef Name="Faculty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course_De__Batch__4AB81AF0">
+          <End Role="Batch_Details" Type="Self.Batch_Details" Multiplicity="1" />
+          <End Role="Course_Details" Type="Self.Course_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch_Details">
+              <PropertyRef Name="Batch_Code" />
+            </Principal>
+            <Dependent Role="Course_Details">
+              <PropertyRef Name="Batch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course_Fe__Cours__4D94879B">
+          <End Role="Course_Details" Type="Self.Course_Details" Multiplicity="1" />
+          <End Role="Course_Fee" Type="Self.Course_Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Details">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Course_Fee">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Depart__3B75D760">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Deta__Cours__5441852A">
+          <End Role="Course_Details" Type="Self.Course_Details" Multiplicity="1" />
+          <End Role="Exam_Details" Type="Self.Exam_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Details">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Exam_Details">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Deta__Stude__5535A963">
+          <End Role="Student_Details" Type="Self.Student_Details" Multiplicity="0..1" />
+          <End Role="Exam_Details" Type="Self.Exam_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Details">
+              <PropertyRef Name="Std_Id" />
+            </Principal>
+            <Dependent Role="Exam_Details">
+              <PropertyRef Name="Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Resu__Stude__59063A47">
+          <End Role="Student_Details" Type="Self.Student_Details" Multiplicity="0..1" />
+          <End Role="Exam_Result" Type="Self.Exam_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Details">
+              <PropertyRef Name="Std_Id" />
+            </Principal>
+            <Dependent Role="Exam_Result">
+              <PropertyRef Name="Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Resul__Exam__5812160E">
+          <End Role="Exam_Details" Type="Self.Exam_Details" Multiplicity="1" />
+          <End Role="Exam_Result" Type="Self.Exam_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam_Details">
+              <PropertyRef Name="Exam_Id" />
+            </Principal>
+            <Dependent Role="Exam_Result">
+              <PropertyRef Name="Exam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Faculty_D__F_Use__44FF419A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Faculty_Details" Type="Self.Faculty_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Faculty_Details">
+              <PropertyRef Name="F_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RolesMapp__RoleI__2E1BDC42">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
           <End Role="RolesMapper" Type="Self.RolesMapper" Multiplicity="*" />
           <ReferentialConstraint>
@@ -49,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RolesMapp__UserI__29572725">
+        <Association Name="FK__RolesMapp__UserI__2D27B809">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="RolesMapper" Type="Self.RolesMapper" Multiplicity="*" />
           <ReferentialConstraint>
@@ -61,34 +261,101 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Student_D__Cours__5165187F">
+          <End Role="Course_Details" Type="Self.Course_Details" Multiplicity="1" />
+          <End Role="Student_Details" Type="Self.Student_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Details">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Student_Details">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_D__User___5070F446">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Student_Details" Type="Self.Student_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Details">
+              <PropertyRef Name="User_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EdubinModelStoreContainer">
+          <EntitySet Name="Batch_Details" EntityType="Self.Batch_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_Details" EntityType="Self.Course_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_Fee" EntityType="Self.Course_Fee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam_Details" EntityType="Self.Exam_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam_Result" EntityType="Self.Exam_Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculty_Details" EntityType="Self.Faculty_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolesMapper" EntityType="Self.RolesMapper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Details" EntityType="Self.Student_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__RolesMapp__RoleI__2A4B4B5E" Association="Self.FK__RolesMapp__RoleI__2A4B4B5E">
+          <AssociationSet Name="FK__Batch_Det__Facul__47DBAE45" Association="Self.FK__Batch_Det__Facul__47DBAE45">
+            <End Role="Faculty_Details" EntitySet="Faculty_Details" />
+            <End Role="Batch_Details" EntitySet="Batch_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course_De__Batch__4AB81AF0" Association="Self.FK__Course_De__Batch__4AB81AF0">
+            <End Role="Batch_Details" EntitySet="Batch_Details" />
+            <End Role="Course_Details" EntitySet="Course_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course_Fe__Cours__4D94879B" Association="Self.FK__Course_Fe__Cours__4D94879B">
+            <End Role="Course_Details" EntitySet="Course_Details" />
+            <End Role="Course_Fee" EntitySet="Course_Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="Self.FK__Employee__Depart__3B75D760">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Deta__Cours__5441852A" Association="Self.FK__Exam_Deta__Cours__5441852A">
+            <End Role="Course_Details" EntitySet="Course_Details" />
+            <End Role="Exam_Details" EntitySet="Exam_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Deta__Stude__5535A963" Association="Self.FK__Exam_Deta__Stude__5535A963">
+            <End Role="Student_Details" EntitySet="Student_Details" />
+            <End Role="Exam_Details" EntitySet="Exam_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Resu__Stude__59063A47" Association="Self.FK__Exam_Resu__Stude__59063A47">
+            <End Role="Student_Details" EntitySet="Student_Details" />
+            <End Role="Exam_Result" EntitySet="Exam_Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Resul__Exam__5812160E" Association="Self.FK__Exam_Resul__Exam__5812160E">
+            <End Role="Exam_Details" EntitySet="Exam_Details" />
+            <End Role="Exam_Result" EntitySet="Exam_Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Faculty_D__F_Use__44FF419A" Association="Self.FK__Faculty_D__F_Use__44FF419A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Faculty_Details" EntitySet="Faculty_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RolesMapp__RoleI__2E1BDC42" Association="Self.FK__RolesMapp__RoleI__2E1BDC42">
             <End Role="RoleMaster" EntitySet="RoleMaster" />
             <End Role="RolesMapper" EntitySet="RolesMapper" />
           </AssociationSet>
-          <AssociationSet Name="FK__RolesMapp__UserI__29572725" Association="Self.FK__RolesMapp__UserI__29572725">
+          <AssociationSet Name="FK__RolesMapp__UserI__2D27B809" Association="Self.FK__RolesMapp__UserI__2D27B809">
             <End Role="Users" EntitySet="Users" />
             <End Role="RolesMapper" EntitySet="RolesMapper" />
           </AssociationSet>
+          <AssociationSet Name="FK__Student_D__Cours__5165187F" Association="Self.FK__Student_D__Cours__5165187F">
+            <End Role="Course_Details" EntitySet="Course_Details" />
+            <End Role="Student_Details" EntitySet="Student_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_D__User___5070F446" Association="Self.FK__Student_D__User___5070F446">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Student_Details" EntitySet="Student_Details" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EdubinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Int32" />
-        </EntityType>
         <EntityType Name="RoleMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -115,6 +382,8 @@
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RolesMappers" Relationship="Self.FK__RolesMapp__UserI__29572725" FromRole="Users" ToRole="RolesMapper" />
+          <NavigationProperty Name="Faculty_Details" Relationship="EdubinModel.FK__Faculty_D__F_Use__44FF419A" FromRole="User" ToRole="Faculty_Details" />
+          <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Student_D__User___5070F446" FromRole="User" ToRole="Student_Details" />
         </EntityType>
         <Association Name="FK__RolesMapp__RoleI__2A4B4B5E">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
@@ -141,7 +410,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EdubinEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
           <EntitySet Name="RolesMappers" EntityType="Self.RolesMapper" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -153,23 +421,320 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="RolesMapper" EntitySet="RolesMappers" />
           </AssociationSet>
+          <EntitySet Name="Departments" EntityType="EdubinModel.Department" />
+          <EntitySet Name="Employees" EntityType="EdubinModel.Employee" />
+          <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="EdubinModel.FK__Employee__Depart__3B75D760">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Batch_Details" EntityType="EdubinModel.Batch_Details" />
+          <EntitySet Name="Course_Details" EntityType="EdubinModel.Course_Details" />
+          <EntitySet Name="Course_Fee" EntityType="EdubinModel.Course_Fee" />
+          <EntitySet Name="Exam_Details" EntityType="EdubinModel.Exam_Details" />
+          <EntitySet Name="Exam_Result" EntityType="EdubinModel.Exam_Result" />
+          <EntitySet Name="Faculty_Details" EntityType="EdubinModel.Faculty_Details" />
+          <EntitySet Name="Student_Details" EntityType="EdubinModel.Student_Details" />
+          <EntitySet Name="sysdiagrams" EntityType="EdubinModel.sysdiagram" />
+          <AssociationSet Name="FK__Batch_Det__Facul__47DBAE45" Association="EdubinModel.FK__Batch_Det__Facul__47DBAE45">
+            <End Role="Faculty_Details" EntitySet="Faculty_Details" />
+            <End Role="Batch_Details" EntitySet="Batch_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course_De__Batch__4AB81AF0" Association="EdubinModel.FK__Course_De__Batch__4AB81AF0">
+            <End Role="Batch_Details" EntitySet="Batch_Details" />
+            <End Role="Course_Details" EntitySet="Course_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Course_Fe__Cours__4D94879B" Association="EdubinModel.FK__Course_Fe__Cours__4D94879B">
+            <End Role="Course_Details" EntitySet="Course_Details" />
+            <End Role="Course_Fee" EntitySet="Course_Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Deta__Cours__5441852A" Association="EdubinModel.FK__Exam_Deta__Cours__5441852A">
+            <End Role="Course_Details" EntitySet="Course_Details" />
+            <End Role="Exam_Details" EntitySet="Exam_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_D__Cours__5165187F" Association="EdubinModel.FK__Student_D__Cours__5165187F">
+            <End Role="Course_Details" EntitySet="Course_Details" />
+            <End Role="Student_Details" EntitySet="Student_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Deta__Stude__5535A963" Association="EdubinModel.FK__Exam_Deta__Stude__5535A963">
+            <End Role="Student_Details" EntitySet="Student_Details" />
+            <End Role="Exam_Details" EntitySet="Exam_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Resul__Exam__5812160E" Association="EdubinModel.FK__Exam_Resul__Exam__5812160E">
+            <End Role="Exam_Details" EntitySet="Exam_Details" />
+            <End Role="Exam_Result" EntitySet="Exam_Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exam_Resu__Stude__59063A47" Association="EdubinModel.FK__Exam_Resu__Stude__59063A47">
+            <End Role="Student_Details" EntitySet="Student_Details" />
+            <End Role="Exam_Result" EntitySet="Exam_Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Faculty_D__F_Use__44FF419A" Association="EdubinModel.FK__Faculty_D__F_Use__44FF419A">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Faculty_Details" EntitySet="Faculty_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student_D__User___5070F446" Association="EdubinModel.FK__Student_D__User___5070F446">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Student_Details" EntitySet="Student_Details" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DeptID" />
+          </Key>
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="EdubinModel.FK__Employee__Depart__3B75D760" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpID" />
+          </Key>
+          <Property Name="EmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HireDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="EdubinModel.FK__Employee__Depart__3B75D760" FromRole="Employee" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK__Employee__Depart__3B75D760">
+          <End Type="EdubinModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="EdubinModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Batch_Details">
+          <Key>
+            <PropertyRef Name="Batch_Code" />
+          </Key>
+          <Property Name="Batch_Code" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Batch_Start" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Batch_end" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Timing" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Faculty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faculty_Details" Relationship="EdubinModel.FK__Batch_Det__Facul__47DBAE45" FromRole="Batch_Details" ToRole="Faculty_Details" />
+          <NavigationProperty Name="Course_Details" Relationship="EdubinModel.FK__Course_De__Batch__4AB81AF0" FromRole="Batch_Details" ToRole="Course_Details" />
+        </EntityType>
+        <EntityType Name="Course_Details">
+          <Key>
+            <PropertyRef Name="Course_Code" />
+          </Key>
+          <Property Name="Course_Code" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Course_fee" Type="Int64" Nullable="false" />
+          <Property Name="Batch" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Batch_Details" Relationship="EdubinModel.FK__Course_De__Batch__4AB81AF0" FromRole="Course_Details" ToRole="Batch_Details" />
+          <NavigationProperty Name="Course_Fee1" Relationship="EdubinModel.FK__Course_Fe__Cours__4D94879B" FromRole="Course_Details" ToRole="Course_Fee" />
+          <NavigationProperty Name="Exam_Details" Relationship="EdubinModel.FK__Exam_Deta__Cours__5441852A" FromRole="Course_Details" ToRole="Exam_Details" />
+          <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Student_D__Cours__5165187F" FromRole="Course_Details" ToRole="Student_Details" />
+        </EntityType>
+        <EntityType Name="Course_Fee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Fee" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Course_Details" Relationship="EdubinModel.FK__Course_Fe__Cours__4D94879B" FromRole="Course_Fee" ToRole="Course_Details" />
+        </EntityType>
+        <EntityType Name="Exam_Details">
+          <Key>
+            <PropertyRef Name="Exam_Id" />
+          </Key>
+          <Property Name="Exam_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Exam_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Exam_Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Student" Type="Int32" />
+          <NavigationProperty Name="Course_Details" Relationship="EdubinModel.FK__Exam_Deta__Cours__5441852A" FromRole="Exam_Details" ToRole="Course_Details" />
+          <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Exam_Deta__Stude__5535A963" FromRole="Exam_Details" ToRole="Student_Details" />
+          <NavigationProperty Name="Exam_Result" Relationship="EdubinModel.FK__Exam_Resul__Exam__5812160E" FromRole="Exam_Details" ToRole="Exam_Result" />
+        </EntityType>
+        <EntityType Name="Exam_Result">
+          <Key>
+            <PropertyRef Name="Result_Id" />
+          </Key>
+          <Property Name="Result_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Exam" Type="Int32" Nullable="false" />
+          <Property Name="Student" Type="Int32" />
+          <Property Name="Total_Marks" Type="Int32" Nullable="false" />
+          <Property Name="Obtained_Marks" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exam_Details" Relationship="EdubinModel.FK__Exam_Resul__Exam__5812160E" FromRole="Exam_Result" ToRole="Exam_Details" />
+          <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Exam_Resu__Stude__59063A47" FromRole="Exam_Result" ToRole="Student_Details" />
+        </EntityType>
+        <EntityType Name="Faculty_Details">
+          <Key>
+            <PropertyRef Name="F_id" />
+          </Key>
+          <Property Name="F_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="F_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="Int64" Nullable="false" />
+          <Property Name="F_User" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Batch_Details" Relationship="EdubinModel.FK__Batch_Det__Facul__47DBAE45" FromRole="Faculty_Details" ToRole="Batch_Details" />
+          <NavigationProperty Name="User" Relationship="EdubinModel.FK__Faculty_D__F_Use__44FF419A" FromRole="Faculty_Details" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Student_Details">
+          <Key>
+            <PropertyRef Name="Std_Id" />
+          </Key>
+          <Property Name="Std_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="D_O_B" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="Int64" Nullable="false" />
+          <Property Name="D_O_A" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="User_" Type="Int32" Nullable="false" />
+          <Property Name="Batch" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Course_Details" Relationship="EdubinModel.FK__Student_D__Cours__5165187F" FromRole="Student_Details" ToRole="Course_Details" />
+          <NavigationProperty Name="Exam_Details" Relationship="EdubinModel.FK__Exam_Deta__Stude__5535A963" FromRole="Student_Details" ToRole="Exam_Details" />
+          <NavigationProperty Name="Exam_Result" Relationship="EdubinModel.FK__Exam_Resu__Stude__59063A47" FromRole="Student_Details" ToRole="Exam_Result" />
+          <NavigationProperty Name="User" Relationship="EdubinModel.FK__Student_D__User___5070F446" FromRole="Student_Details" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Batch_Det__Facul__47DBAE45">
+          <End Type="EdubinModel.Faculty_Details" Role="Faculty_Details" Multiplicity="1" />
+          <End Type="EdubinModel.Batch_Details" Role="Batch_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculty_Details">
+              <PropertyRef Name="F_id" />
+            </Principal>
+            <Dependent Role="Batch_Details">
+              <PropertyRef Name="Faculty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course_De__Batch__4AB81AF0">
+          <End Type="EdubinModel.Batch_Details" Role="Batch_Details" Multiplicity="1" />
+          <End Type="EdubinModel.Course_Details" Role="Course_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Batch_Details">
+              <PropertyRef Name="Batch_Code" />
+            </Principal>
+            <Dependent Role="Course_Details">
+              <PropertyRef Name="Batch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Course_Fe__Cours__4D94879B">
+          <End Type="EdubinModel.Course_Details" Role="Course_Details" Multiplicity="1" />
+          <End Type="EdubinModel.Course_Fee" Role="Course_Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Details">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Course_Fee">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Deta__Cours__5441852A">
+          <End Type="EdubinModel.Course_Details" Role="Course_Details" Multiplicity="1" />
+          <End Type="EdubinModel.Exam_Details" Role="Exam_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Details">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Exam_Details">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_D__Cours__5165187F">
+          <End Type="EdubinModel.Course_Details" Role="Course_Details" Multiplicity="1" />
+          <End Type="EdubinModel.Student_Details" Role="Student_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Details">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Student_Details">
+              <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Deta__Stude__5535A963">
+          <End Type="EdubinModel.Student_Details" Role="Student_Details" Multiplicity="0..1" />
+          <End Type="EdubinModel.Exam_Details" Role="Exam_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Details">
+              <PropertyRef Name="Std_Id" />
+            </Principal>
+            <Dependent Role="Exam_Details">
+              <PropertyRef Name="Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Resul__Exam__5812160E">
+          <End Type="EdubinModel.Exam_Details" Role="Exam_Details" Multiplicity="1" />
+          <End Type="EdubinModel.Exam_Result" Role="Exam_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam_Details">
+              <PropertyRef Name="Exam_Id" />
+            </Principal>
+            <Dependent Role="Exam_Result">
+              <PropertyRef Name="Exam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exam_Resu__Stude__59063A47">
+          <End Type="EdubinModel.Student_Details" Role="Student_Details" Multiplicity="0..1" />
+          <End Type="EdubinModel.Exam_Result" Role="Exam_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Details">
+              <PropertyRef Name="Std_Id" />
+            </Principal>
+            <Dependent Role="Exam_Result">
+              <PropertyRef Name="Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Faculty_D__F_Use__44FF419A">
+          <End Type="EdubinModel.User" Role="User" Multiplicity="1" />
+          <End Type="EdubinModel.Faculty_Details" Role="Faculty_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Faculty_Details">
+              <PropertyRef Name="F_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student_D__User___5070F446">
+          <End Type="EdubinModel.User" Role="User" Multiplicity="1" />
+          <End Type="EdubinModel.Student_Details" Role="Student_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Details">
+              <PropertyRef Name="User_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EdubinModelStoreContainer" CdmEntityContainer="EdubinEntities">
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="EdubinModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RoleMasters">
             <EntityTypeMapping TypeName="EdubinModel.RoleMaster">
               <MappingFragment StoreEntitySet="RoleMaster">
@@ -193,6 +758,117 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="EdubinModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="EdubinModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Batch_Details">
+            <EntityTypeMapping TypeName="EdubinModel.Batch_Details">
+              <MappingFragment StoreEntitySet="Batch_Details">
+                <ScalarProperty Name="Faculty" ColumnName="Faculty" />
+                <ScalarProperty Name="Timing" ColumnName="Timing" />
+                <ScalarProperty Name="Batch_end" ColumnName="Batch_end" />
+                <ScalarProperty Name="Batch_Start" ColumnName="Batch_Start" />
+                <ScalarProperty Name="Batch_Code" ColumnName="Batch_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Details">
+            <EntityTypeMapping TypeName="EdubinModel.Course_Details">
+              <MappingFragment StoreEntitySet="Course_Details">
+                <ScalarProperty Name="Batch" ColumnName="Batch" />
+                <ScalarProperty Name="Course_fee" ColumnName="Course_fee" />
+                <ScalarProperty Name="Course_Name" ColumnName="Course_Name" />
+                <ScalarProperty Name="Course_Code" ColumnName="Course_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Fee">
+            <EntityTypeMapping TypeName="EdubinModel.Course_Fee">
+              <MappingFragment StoreEntitySet="Course_Fee">
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exam_Details">
+            <EntityTypeMapping TypeName="EdubinModel.Exam_Details">
+              <MappingFragment StoreEntitySet="Exam_Details">
+                <ScalarProperty Name="Student" ColumnName="Student" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Exam_Time" ColumnName="Exam_Time" />
+                <ScalarProperty Name="Exam_Date" ColumnName="Exam_Date" />
+                <ScalarProperty Name="Exam_Id" ColumnName="Exam_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exam_Result">
+            <EntityTypeMapping TypeName="EdubinModel.Exam_Result">
+              <MappingFragment StoreEntitySet="Exam_Result">
+                <ScalarProperty Name="Obtained_Marks" ColumnName="Obtained_Marks" />
+                <ScalarProperty Name="Total_Marks" ColumnName="Total_Marks" />
+                <ScalarProperty Name="Student" ColumnName="Student" />
+                <ScalarProperty Name="Exam" ColumnName="Exam" />
+                <ScalarProperty Name="Result_Id" ColumnName="Result_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculty_Details">
+            <EntityTypeMapping TypeName="EdubinModel.Faculty_Details">
+              <MappingFragment StoreEntitySet="Faculty_Details">
+                <ScalarProperty Name="F_User" ColumnName="F_User" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="F_name" ColumnName="F_name" />
+                <ScalarProperty Name="F_id" ColumnName="F_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Details">
+            <EntityTypeMapping TypeName="EdubinModel.Student_Details">
+              <MappingFragment StoreEntitySet="Student_Details">
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Batch" ColumnName="Batch" />
+                <ScalarProperty Name="User_" ColumnName="User_" />
+                <ScalarProperty Name="D_O_A" ColumnName="D_O_A" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="D_O_B" ColumnName="D_O_B" />
+                <ScalarProperty Name="C_Name" ColumnName="C_Name" />
+                <ScalarProperty Name="Std_Id" ColumnName="Std_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EdubinModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

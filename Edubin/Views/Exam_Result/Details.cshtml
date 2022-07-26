@@ -1,0 +1,50 @@
+﻿@model Edubin.Models.Exam_Result
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Exam_Result</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Marks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Marks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obtained_Marks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obtained_Marks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exam_Details.Course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exam_Details.Course)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student_Details.C_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student_Details.C_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Result_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

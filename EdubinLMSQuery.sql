@@ -128,7 +128,7 @@ Batch_Code varchar(15) primary key not null,
 Batch_Start date not null,
 Batch_end date not null,
 Timing time not null,
-Faculty int not null foreign key references Faculty(F_id)
+Faculty int not null foreign key references Faculty_Details(F_id)
 )
 GO
 create table Course_Details

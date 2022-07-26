@@ -1,0 +1,56 @@
+﻿@model Edubin.Models.Exam_Result
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Exam_Result</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Marks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Marks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obtained_Marks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obtained_Marks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exam_Details.Course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exam_Details.Course)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student_Details.C_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student_Details.C_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
