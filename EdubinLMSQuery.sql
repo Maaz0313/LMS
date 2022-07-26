@@ -57,8 +57,9 @@ Position VARCHAR(50),
 Office VARCHAR(50),
 HireDate VARCHAR(50),
 Salary INT,
-DepartmentId INT 
+DepartmentId INT FOREIGN KEY REFERENCES Departments(DeptID)
 )
+GO
 --EmpId,Name,Gender,Age,Position,Office,HireDate,Salary,DepartmentId
 --href="https://www.c-sharpcorner.com/article/role-based-menus-in-asp-net-mvc/"
 GO
@@ -68,9 +69,7 @@ ADD FOREIGN KEY (UserID) REFERENCES Users(ID);
 GO
 ALTER TABLE RolesMapper
 ADD FOREIGN KEY (RoleID) REFERENCES RoleMaster(ID);
-GO
-ALTER TABLE Departments
-ADD FOREIGN KEY (DeptID) REFERENCES Employee(DepartmentId);
+
 GO
 -- EXEC SP_RENAME 'table_name.current_name' , 'new_name', 'COLUMN'
 -- Firstly, create above 3 tables only & apply role-based authentication alongwith forms authentication 
@@ -87,13 +86,13 @@ student (regular user; has most data)
 GO
 -- Inserting data into Role Master table
 INSERT INTO RoleMaster VALUES('Admin')
-INSERT INTO RoleMaster VALUES('webmaster')
+INSERT INTO RoleMaster VALUES('Employee')
 INSERT INTO RoleMaster VALUES('Faculty')
 INSERT INTO RoleMaster VALUES('Student')
 GO
 -- Inserting data into Users table
 INSERT INTO Users VALUES('Admin','admin')
-INSERT INTO Users VALUES('webmaster','webmaster')
+INSERT INTO Users VALUES('Employee','employee')
 INSERT INTO Users VALUES('Faculty','faculty')
 INSERT INTO Users VALUES('Student','student')
 GO
@@ -152,7 +151,7 @@ Fee bigint not null
 GO
 						-- For Student Signup:
 GO
-create table Student_Details 
+create table Student
 (
 Std_Id int primary key identity,
 C_Name varchar(MAX) not null,
