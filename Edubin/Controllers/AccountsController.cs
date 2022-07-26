@@ -50,26 +50,6 @@ namespace Edubin.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-        [HttpPost]
-        public ActionResult F_Dashboard() //dashboard for Faculty
-        {
-
-            return View();
-        }
-        [HttpPost]
-        public ActionResult S_Dashboard(User S_modelgedin) //dashboard for Student
-        {
-            //using (var context = new EdubinEntities())
-            //{
-            //    bool isValid = context.Users.Any(x => x.Username == S_modelgedin.Username && x.Passwords == S_modelgedin.Passwords);
-            //    if (isValid)
-            //    {
-            //        FormsAuthentication.SetAuthCookie(S_modelgedin.Username, false);
-            //        return RedirectToAction("Index", "Student_Details");
-            //    }
-            //    ModelState.AddModelError("", "Invalid username or password");
-            //}
-            return View();
-        }
+        
     }
 }
