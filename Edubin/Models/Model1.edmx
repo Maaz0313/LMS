@@ -82,21 +82,6 @@
           <Property Name="Contact" Type="bigint" Nullable="false" />
           <Property Name="F_User" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="RoleMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RollName" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="RolesMapper">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="RoleID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Student_Details">
           <Key>
             <PropertyRef Name="Std_Id" />
@@ -120,6 +105,14 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -237,30 +230,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RolesMapp__RoleI__2E1BDC42">
-          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
-          <End Role="RolesMapper" Type="Self.RolesMapper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoleMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RolesMapper">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RolesMapp__UserI__2D27B809">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="RolesMapper" Type="Self.RolesMapper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RolesMapper">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Student_D__Cours__5165187F">
           <End Role="Course_Details" Type="Self.Course_Details" Multiplicity="1" />
           <End Role="Student_Details" Type="Self.Student_Details" Multiplicity="*" />
@@ -285,6 +254,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UserRole__UserID__5CD6CB2B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="EdubinModelStoreContainer">
           <EntitySet Name="Batch_Details" EntityType="Self.Batch_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course_Details" EntityType="Self.Course_Details" Schema="dbo" store:Type="Tables" />
@@ -294,10 +275,9 @@
           <EntitySet Name="Exam_Details" EntityType="Self.Exam_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam_Result" EntityType="Self.Exam_Result" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty_Details" EntityType="Self.Faculty_Details" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RolesMapper" EntityType="Self.RolesMapper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Details" EntityType="Self.Student_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Batch_Det__Facul__47DBAE45" Association="Self.FK__Batch_Det__Facul__47DBAE45">
             <End Role="Faculty_Details" EntitySet="Faculty_Details" />
@@ -335,14 +315,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Faculty_Details" EntitySet="Faculty_Details" />
           </AssociationSet>
-          <AssociationSet Name="FK__RolesMapp__RoleI__2E1BDC42" Association="Self.FK__RolesMapp__RoleI__2E1BDC42">
-            <End Role="RoleMaster" EntitySet="RoleMaster" />
-            <End Role="RolesMapper" EntitySet="RolesMapper" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RolesMapp__UserI__2D27B809" Association="Self.FK__RolesMapp__UserI__2D27B809">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="RolesMapper" EntitySet="RolesMapper" />
-          </AssociationSet>
           <AssociationSet Name="FK__Student_D__Cours__5165187F" Association="Self.FK__Student_D__Cours__5165187F">
             <End Role="Course_Details" EntitySet="Course_Details" />
             <End Role="Student_Details" EntitySet="Student_Details" />
@@ -351,29 +323,15 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Student_Details" EntitySet="Student_Details" />
           </AssociationSet>
+          <AssociationSet Name="FK__UserRole__UserID__5CD6CB2B" Association="Self.FK__UserRole__UserID__5CD6CB2B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EdubinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="RoleMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RollName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RolesMappers" Relationship="Self.FK__RolesMapp__RoleI__2A4B4B5E" FromRole="RoleMaster" ToRole="RolesMapper" />
-        </EntityType>
-        <EntityType Name="RolesMapper">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__RolesMapp__RoleI__2A4B4B5E" FromRole="RolesMapper" ToRole="RoleMaster" />
-          <NavigationProperty Name="User" Relationship="Self.FK__RolesMapp__UserI__29572725" FromRole="RolesMapper" ToRole="Users" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
@@ -381,46 +339,12 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="RolesMappers" Relationship="Self.FK__RolesMapp__UserI__29572725" FromRole="Users" ToRole="RolesMapper" />
           <NavigationProperty Name="Faculty_Details" Relationship="EdubinModel.FK__Faculty_D__F_Use__44FF419A" FromRole="User" ToRole="Faculty_Details" />
           <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Student_D__User___5070F446" FromRole="User" ToRole="Student_Details" />
+          <NavigationProperty Name="UserRoles" Relationship="EdubinModel.FK__UserRole__UserID__5CD6CB2B" FromRole="User" ToRole="UserRole" />
         </EntityType>
-        <Association Name="FK__RolesMapp__RoleI__2A4B4B5E">
-          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="1" />
-          <End Role="RolesMapper" Type="Self.RolesMapper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoleMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RolesMapper">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__RolesMapp__UserI__29572725">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="RolesMapper" Type="Self.RolesMapper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="RolesMapper">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="EdubinEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
-          <EntitySet Name="RolesMappers" EntityType="Self.RolesMapper" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__RolesMapp__RoleI__2A4B4B5E" Association="Self.FK__RolesMapp__RoleI__2A4B4B5E">
-            <End Role="RoleMaster" EntitySet="RoleMasters" />
-            <End Role="RolesMapper" EntitySet="RolesMappers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__RolesMapp__UserI__29572725" Association="Self.FK__RolesMapp__UserI__29572725">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="RolesMapper" EntitySet="RolesMappers" />
-          </AssociationSet>
           <EntitySet Name="Departments" EntityType="EdubinModel.Department" />
           <EntitySet Name="Employees" EntityType="EdubinModel.Employee" />
           <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="EdubinModel.FK__Employee__Depart__3B75D760">
@@ -474,6 +398,11 @@
           <AssociationSet Name="FK__Student_D__User___5070F446" Association="EdubinModel.FK__Student_D__User___5070F446">
             <End Role="User" EntitySet="Users" />
             <End Role="Student_Details" EntitySet="Student_Details" />
+          </AssociationSet>
+          <EntitySet Name="UserRoles" EntityType="EdubinModel.UserRole" />
+          <AssociationSet Name="FK__UserRole__UserID__5CD6CB2B" Association="EdubinModel.FK__UserRole__UserID__5CD6CB2B">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Department">
@@ -729,29 +658,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="EdubinModel.FK__UserRole__UserID__5CD6CB2B" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__UserRole__UserID__5CD6CB2B">
+          <End Type="EdubinModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="EdubinModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EdubinModelStoreContainer" CdmEntityContainer="EdubinEntities">
-          <EntitySetMapping Name="RoleMasters">
-            <EntityTypeMapping TypeName="EdubinModel.RoleMaster">
-              <MappingFragment StoreEntitySet="RoleMaster">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="RollName" ColumnName="RollName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RolesMappers">
-            <EntityTypeMapping TypeName="EdubinModel.RolesMapper">
-              <MappingFragment StoreEntitySet="RolesMapper">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="EdubinModel.User">
               <MappingFragment StoreEntitySet="Users">
@@ -869,6 +802,15 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="EdubinModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

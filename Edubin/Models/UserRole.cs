@@ -12,13 +12,12 @@ namespace Edubin.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class RolesMapper
+    public partial class UserRole
     {
         public int ID { get; set; }
-        public int UserID { get; set; }
-        public int RoleID { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public string Role { get; set; }
     
-        public virtual RoleMaster RoleMaster { get; set; }
         public virtual User User { get; set; }
     }
 }

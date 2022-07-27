@@ -17,9 +17,9 @@ namespace Edubin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.RolesMappers = new HashSet<RolesMapper>();
             this.Faculty_Details = new HashSet<Faculty_Details>();
             this.Student_Details = new HashSet<Student_Details>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
         public int ID { get; set; }
@@ -27,10 +27,10 @@ namespace Edubin.Models
         public string UserPassword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RolesMapper> RolesMappers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Faculty_Details> Faculty_Details { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Details> Student_Details { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

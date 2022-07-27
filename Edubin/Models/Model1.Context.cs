@@ -25,8 +25,6 @@ namespace Edubin.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<RoleMaster> RoleMasters { get; set; }
-        public virtual DbSet<RolesMapper> RolesMappers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
@@ -38,5 +36,6 @@ namespace Edubin.Models
         public virtual DbSet<Faculty_Details> Faculty_Details { get; set; }
         public virtual DbSet<Student_Details> Student_Details { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
     }
 }
