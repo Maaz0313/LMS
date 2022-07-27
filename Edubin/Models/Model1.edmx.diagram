@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="EdubinModel.Exam_Result" Width="1.5" PointX="13.5" PointY="3.375" />
         <EntityTypeShape EntityType="EdubinModel.Faculty_Details" Width="1.5" PointX="4.375" PointY="3.375" />
         <EntityTypeShape EntityType="EdubinModel.Student_Details" Width="1.5" PointX="11.25" PointY="0.5" />
-        <EntityTypeShape EntityType="EdubinModel.sysdiagram" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EdubinModel.sysdiagram" Width="1.5" PointX="8.25" PointY="0.75" />
         <AssociationConnector Association="EdubinModel.FK__Batch_Det__Facul__47DBAE45" />
         <AssociationConnector Association="EdubinModel.FK__Course_De__Batch__4AB81AF0" />
         <AssociationConnector Association="EdubinModel.FK__Course_Fe__Cours__4D94879B" />
