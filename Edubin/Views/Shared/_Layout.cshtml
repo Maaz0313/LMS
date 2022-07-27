@@ -61,7 +61,8 @@
 
     <header id="header-part">
 
-        <div class="header-top d-none d-lg-block"> <!-- header top -->
+        <div class="header-top d-none d-lg-block">
+            <!-- header top -->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -81,7 +82,8 @@
             </div> <!-- container -->
         </div> <!-- header top -->
 
-        <div class="header-logo-support pt-30 pb-30"> <!-- header logo support -->
+        <div class="header-logo-support pt-30 pb-30">
+            <!-- header logo support -->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
@@ -103,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="button float-left">
-                                @Html.ActionLink("Apply Now", "Signup", "Accounts", new { area = "" }, new { @class = "main-btn" })
+                                @Html.ActionLink("Apply Now", "Create", "Student_Details", new { area = "" }, new { @class = "main-btn" })
                             </div>
                         </div>
                     </div>
@@ -111,7 +113,8 @@
             </div> <!-- container -->
         </div> <!-- header logo support -->
 
-        <div class="navigation"> <!-- /*bootstrap's*/ class = "navigation" -->
+        <div class="navigation">
+            <!-- /*bootstrap's*/ class = "navigation" -->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-md-10 col-sm-9 col-8">
@@ -143,9 +146,32 @@
                                     </li>
 
                                 </ul>
+
+                            </div>
+                        </nav> <!-- nav -->
+                        <nav>
+
+                        </nav> <!-- nav -->
+                    </div>
+                </div> <!-- row -->
+            </div>
+        </div> <!-- /*bootstrap's*/ class = "navigation" -->
+        <div class="navigation">
+            <!-- /*bootstrap's*/ class = "navigation" -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+                        <nav class="navbar navbar-expand-lg">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
-                                        @Html.ActionLink("Employee Portal", "Index", "Employees", new { area = "" }, new { @class = "navbar-brand" })
+                                        @Html.ActionLink("Get Emp", "Index", "Employees", new { area = "" })
+                                        @Html.ActionLink("Create Emp", "Create", "Employees", new { area = "" })
                                     </li>
                                     @if (User.Identity.IsAuthenticated)
                                     {
@@ -171,7 +197,6 @@
                 </div> <!-- row -->
             </div>
         </div> <!-- /*bootstrap's*/ class = "navigation" -->
-
     </header>
 
     <!--====== HEADER PART ENDS ======-->
