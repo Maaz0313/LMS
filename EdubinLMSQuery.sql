@@ -26,19 +26,12 @@ CREATE TABLE Users
  UserPassword VARCHAR(50)
 )
 GO
--- Creating RoleMaster Table
-CREATE TABLE RoleMaster
+-- Creating Roles Table
+CREATE TABLE UserRole
 (
  ID INT PRIMARY KEY IDENTITY(1,1),
- RollName VARCHAR(50)
-)
-GO
--- Creating User Roles Mapping table
-CREATE TABLE RolesMapper
-(
- ID INT PRIMARY KEY,
- UserID INT NOT NULL,
- RoleID INT NOT NULL,
+ UserID INT FOREIGN KEY REFERENCES Users(ID),
+ Role NVARCHAR(50)
 )
 GO
 CREATE TABLE Departments
@@ -77,7 +70,7 @@ GO
 GO
 
 GO
--- Inserting data into Role Master table
+-- Inserting data into UserRole table
 INSERT INTO RoleMaster VALUES('Admin')
 INSERT INTO RoleMaster VALUES('Employee')
 INSERT INTO RoleMaster VALUES('Faculty')
@@ -93,13 +86,6 @@ GO
 --number 2 for employee
 --number 3 for faculty
 --number 4 for students
-GO
--- Inserting data into User Roles Mapping table
-INSERT INTO RolesMapper VALUES(1, 1, 1)
-INSERT INTO RolesMapper VALUES(2, 1, 2)
-INSERT INTO RolesMapper VALUES(3, 1, 3)
-INSERT INTO RolesMapper VALUES(4, 2, 2)
---INSERT INTO RolesMapper VALUES(5, 3, 3)
 GO
 -- Inserting data into Departments table
 INSERT INTO Departments VALUES(1,'Admin')
