@@ -60,7 +60,11 @@ GO
 -- Firstly, create above 3 tables only & apply role-based authentication alongwith forms authentication 
 -- href: https://dotnettutorials.net/lesson/forms-authentication-in-mvc/ /*relating emp & users table*/
 GO
-
+-- Inserting data into Users table
+INSERT INTO Users VALUES('Admin','admin')
+INSERT INTO Users VALUES('Employee','employee')
+INSERT INTO Users VALUES('Faculty','faculty')
+INSERT INTO Users VALUES('Student','student')
 GO
 -- Inserting data into UserRole table
 INSERT INTO UserRole VALUES('Admin')
@@ -68,12 +72,7 @@ INSERT INTO UserRole VALUES('Employee')
 INSERT INTO UserRole VALUES('Faculty')
 INSERT INTO UserRole VALUES('Student')
 GO
--- Inserting data into Users table
-INSERT INTO Users VALUES('Admin','admin')
-INSERT INTO Users VALUES('Employee','employee')
-INSERT INTO Users VALUES('Faculty','faculty')
-INSERT INTO Users VALUES('Student','student')
-GO
+
 --number 1 for admin
 --number 2 for employee
 --number 3 for faculty
