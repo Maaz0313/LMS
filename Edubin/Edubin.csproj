@@ -130,7 +130,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\Course_DetailsController.cs" />
-    <Compile Include="Controllers\Course_FeeController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\Exam_DetailsController.cs" />
     <Compile Include="Controllers\Faculty_DetailsController.cs" />
@@ -395,6 +394,11 @@
     <Content Include="Views\Student_Details\Details.cshtml" />
     <Content Include="Views\Student_Details\Edit.cshtml" />
     <Content Include="Views\Student_Details\Index.cshtml" />
+    <Content Include="Views\Course_Details\Create.cshtml" />
+    <Content Include="Views\Course_Details\Delete.cshtml" />
+    <Content Include="Views\Course_Details\Details.cshtml" />
+    <Content Include="Views\Course_Details\Edit.cshtml" />
+    <Content Include="Views\Course_Details\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
