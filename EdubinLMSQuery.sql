@@ -85,7 +85,7 @@ INSERT INTO Departments VALUES(2,'Faculty')
 INSERT INTO Departments VALUES(3,'Student')
 GO
 -- Inserting data into Employee table
-INSERT INTO Employee VALUES('Anurag', 'Male', 22, 'Teacher', '27-7-2022', 20000,2)
+INSERT INTO Employee VALUES('Anurag', 'Male', 22, 'Teacher', '27-7-2022', 20000,1)
 INSERT INTO Employee VALUES('Sandeep', 'Male', 22, 'Teacher', '23-7-2022', 20000,2)
 INSERT INTO Employee VALUES('Preeti', 'Female', 22, 'Teacher', '27-7-2022', 20000,2)
 INSERT INTO Employee VALUES('Anurag', 'Female', 22, 'Teacher', '27-7-2022', 20000,2)
