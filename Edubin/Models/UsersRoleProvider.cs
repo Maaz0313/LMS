@@ -44,12 +44,12 @@ namespace Edubin.Models
             using (EdubinEntities context = new EdubinEntities())
             {
                 var userRoles = (from user in context.Users
-                                 join roleMapping in context.RolesMappers
+                                 join roleMapping in context.UserRoles
                                  on user.ID equals roleMapping.UserID
-                                 join role in context.RoleMasters
-                                 on roleMapping.RoleID equals role.ID
+                                 join role in context.UserRoles
+                                 on roleMapping.ID equals role.ID
                                  where user.UserName == username
-                                 select role.RollName).ToArray();
+                                 select role.Role).ToArray();
                 return userRoles;
             }
         }
