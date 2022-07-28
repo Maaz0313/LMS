@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,14 +14,19 @@ namespace Edubin.Controllers
     {
         private EdubinEntities db = new EdubinEntities();
 
+        //Global Roles in an organization/company:
+        //[Admin][Employee][Customer]
+
         // GET: Employees
+        [Authorize (Roles ="Admin,Employee,Student")]
         public ActionResult Index()
         {
             var employees = db.Employees.Include(e => e.Department);
             return View(employees.ToList());
         }
-
+        
         // GET: Employees/Details/5
+        [Authorize(Roles = "Admin,Employee,Student")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +42,7 @@ namespace Edubin.Controllers
         }
 
         // GET: Employees/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.DepartmentId = new SelectList(db.Departments, "DeptID", "DepartmentName");
@@ -46,6 +52,7 @@ namespace Edubin.Controllers
         // POST: Employees/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin,Employee")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmpID,Name,Gender,Age,Position,HireDate,Salary,DepartmentId")] Employee employee)
@@ -62,6 +69,7 @@ namespace Edubin.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin,Employee,Student")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +88,7 @@ namespace Edubin.Controllers
         // POST: Employees/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin,Employee,Student")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmpID,Name,Gender,Age,Position,HireDate,Salary,DepartmentId")] Employee employee)
@@ -93,7 +102,7 @@ namespace Edubin.Controllers
             ViewBag.DepartmentId = new SelectList(db.Departments, "DeptID", "DepartmentName", employee.DepartmentId);
             return View(employee);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -110,6 +119,7 @@ namespace Edubin.Controllers
         }
 
         // POST: Employees/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
