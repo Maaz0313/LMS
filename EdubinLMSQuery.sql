@@ -63,10 +63,10 @@ GO
 
 GO
 -- Inserting data into UserRole table
-INSERT INTO RoleMaster VALUES('Admin')
-INSERT INTO RoleMaster VALUES('Employee')
-INSERT INTO RoleMaster VALUES('Faculty')
-INSERT INTO RoleMaster VALUES('Student')
+INSERT INTO UserRole VALUES('Admin')
+INSERT INTO UserRole VALUES('Employee')
+INSERT INTO UserRole VALUES('Faculty')
+INSERT INTO UserRole VALUES('Student')
 GO
 -- Inserting data into Users table
 INSERT INTO Users VALUES('Admin','admin')
