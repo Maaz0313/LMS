@@ -69,7 +69,6 @@ GO
 -- Inserting data into UserRole table
 INSERT INTO UserRole VALUES('Admin')
 INSERT INTO UserRole VALUES('Employee')
-INSERT INTO UserRole VALUES('Faculty')
 INSERT INTO UserRole VALUES('Student')
 GO
 
