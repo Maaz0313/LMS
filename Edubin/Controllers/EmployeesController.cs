@@ -15,8 +15,9 @@ namespace Edubin.Controllers
         private EdubinEntities db = new EdubinEntities();
 
         //Global Roles in an organization/company:
-        //[Admin][Employee][Customer]
-
+        //[Admin]
+        //[Employee]
+        //[Customer]
         // GET: Employees
         [Authorize (Roles ="Admin,Employee,Student")]
         public ActionResult Index()
