@@ -56,14 +56,6 @@ GO
 --EmpId,Name,Gender,Age,Position,Office,HireDate,Salary,DepartmentId
 --href="https://www.c-sharpcorner.com/article/role-based-menus-in-asp-net-mvc/"
 GO
--- Adding Foreign KeyS
-ALTER TABLE RolesMapper
-ADD FOREIGN KEY (UserID) REFERENCES Users(ID);
-GO
-ALTER TABLE RolesMapper
-ADD FOREIGN KEY (RoleID) REFERENCES RoleMaster(ID);
-
-GO
 -- EXEC SP_RENAME 'table_name.current_name' , 'new_name', 'COLUMN'
 -- Firstly, create above 3 tables only & apply role-based authentication alongwith forms authentication 
 -- href: https://dotnettutorials.net/lesson/forms-authentication-in-mvc/ /*relating emp & users table*/
