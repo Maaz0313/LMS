@@ -130,6 +130,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\Course_DetailsController.cs" />
+    <Compile Include="Controllers\Course_FeeController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\Exam_DetailsController.cs" />
     <Compile Include="Controllers\Faculty_DetailsController.cs" />
@@ -374,11 +376,6 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
-    <Content Include="Views\Departments\Create.cshtml" />
-    <Content Include="Views\Departments\Delete.cshtml" />
-    <Content Include="Views\Departments\Details.cshtml" />
-    <Content Include="Views\Departments\Edit.cshtml" />
-    <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Exam_Details\Create.cshtml" />
     <Content Include="Views\Exam_Details\Delete.cshtml" />
     <Content Include="Views\Exam_Details\Details.cshtml" />
@@ -399,6 +396,16 @@
     <Content Include="Views\Course_Details\Details.cshtml" />
     <Content Include="Views\Course_Details\Edit.cshtml" />
     <Content Include="Views\Course_Details\Index.cshtml" />
+    <Content Include="Views\Course_Fee\Create.cshtml" />
+    <Content Include="Views\Course_Fee\Delete.cshtml" />
+    <Content Include="Views\Course_Fee\Details.cshtml" />
+    <Content Include="Views\Course_Fee\Edit.cshtml" />
+    <Content Include="Views\Course_Fee\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
