@@ -171,6 +171,8 @@
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
                                         @Html.ActionLink("Get Emp", "Index", "Employees", new { area = "" })
+                                    </li>
+                                    <li class="nav-item">
                                         @Html.ActionLink("Create Emp", "Create", "Employees", new { area = "" })
                                     </li>
                                     @if (User.Identity.IsAuthenticated)
