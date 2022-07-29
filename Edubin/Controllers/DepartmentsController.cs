@@ -14,12 +14,14 @@ namespace Edubin.Controllers
     {
         private EdubinEntities db = new EdubinEntities();
 
+        [Authorize(Roles = "head")]
         // GET: Departments
         public ActionResult Index()
         {
             return View(db.Departments.ToList());
         }
 
+        [Authorize(Roles = "head")]
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,12 +37,14 @@ namespace Edubin.Controllers
             return View(department);
         }
 
+        [Authorize(Roles = "head")]
         // GET: Departments/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "head")]
         // POST: Departments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -58,6 +62,7 @@ namespace Edubin.Controllers
             return View(department);
         }
 
+        [Authorize(Roles = "head")]
         // GET: Departments/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -73,6 +78,7 @@ namespace Edubin.Controllers
             return View(department);
         }
 
+        [Authorize(Roles = "head")]
         // POST: Departments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -89,6 +95,7 @@ namespace Edubin.Controllers
             return View(department);
         }
 
+        [Authorize(Roles = "head")]
         // GET: Departments/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -104,6 +111,7 @@ namespace Edubin.Controllers
             return View(department);
         }
 
+        [Authorize(Roles = "head")]
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

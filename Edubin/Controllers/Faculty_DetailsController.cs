@@ -14,6 +14,7 @@ namespace Edubin.Controllers
     {
         private EdubinEntities db = new EdubinEntities();
 
+        [Authorize(Roles = "teacher")]
         // GET: Faculty_Details
         public ActionResult Index()
         {
@@ -21,6 +22,7 @@ namespace Edubin.Controllers
             return View(faculty_Details.ToList());
         }
 
+        [Authorize(Roles = "teacher")]
         // GET: Faculty_Details/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,6 +38,7 @@ namespace Edubin.Controllers
             return View(faculty_Details);
         }
 
+        [Authorize(Roles = "teacher")]
         // GET: Faculty_Details/Create
         public ActionResult Create()
         {
@@ -43,6 +46,7 @@ namespace Edubin.Controllers
             return View();
         }
 
+        [Authorize(Roles = "teacher")]
         // POST: Faculty_Details/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -61,6 +65,7 @@ namespace Edubin.Controllers
             return View(faculty_Details);
         }
 
+        [Authorize(Roles = "teacher")]
         // GET: Faculty_Details/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -77,6 +82,7 @@ namespace Edubin.Controllers
             return View(faculty_Details);
         }
 
+        [Authorize(Roles = "")]
         // POST: Faculty_Details/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -94,6 +100,7 @@ namespace Edubin.Controllers
             return View(faculty_Details);
         }
 
+        [Authorize(Roles = "")]
         // GET: Faculty_Details/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,6 +116,7 @@ namespace Edubin.Controllers
             return View(faculty_Details);
         }
 
+        [Authorize(Roles = "")]
         // POST: Faculty_Details/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -20,7 +20,7 @@ namespace Edubin.Controllers
         //[Faculty]
         //[Student]
         // GET: Employees
-        [Authorize (Roles ="Admin")]
+        [Authorize (Roles ="admin")]
         public ActionResult Index()
         {
             var employees = db.Employees.Include(e => e.Department);
@@ -28,7 +28,7 @@ namespace Edubin.Controllers
         }
         
         // GET: Employees/Details/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,7 +44,7 @@ namespace Edubin.Controllers
         }
 
         // GET: Employees/Create
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             ViewBag.DepartmentId = new SelectList(db.Departments, "DeptID", "DepartmentName");
@@ -71,7 +71,7 @@ namespace Edubin.Controllers
         }
 
         // GET: Employees/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace Edubin.Controllers
         // POST: Employees/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmpID,Name,Gender,Age,Position,HireDate,Salary,DepartmentId")] Employee employee)
@@ -104,7 +104,7 @@ namespace Edubin.Controllers
             ViewBag.DepartmentId = new SelectList(db.Departments, "DeptID", "DepartmentName", employee.DepartmentId);
             return View(employee);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -121,7 +121,7 @@ namespace Edubin.Controllers
         }
 
         // POST: Employees/Delete/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
