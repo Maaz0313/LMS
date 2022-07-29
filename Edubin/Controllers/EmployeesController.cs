@@ -10,13 +10,14 @@ using Edubin.Models;
 
 namespace Edubin.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private EdubinEntities db = new EdubinEntities();
 
         //Global Roles in an LMS/academy:
         //[Admin]
-        //[Dean]
+        //[HOD]
         //[Faculty]
         //[Student]
         // GET: Employees
