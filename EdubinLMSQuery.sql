@@ -61,10 +61,10 @@ GO
 -- href: https://dotnettutorials.net/lesson/forms-authentication-in-mvc/ /*relating emp & users table*/
 GO
 -- Inserting data into Users table
-INSERT INTO Users VALUES('Admin','admin')
-INSERT INTO Users VALUES('Employee','employee')
-INSERT INTO Users VALUES('Faculty','faculty')
-INSERT INTO Users VALUES('Student','student')
+INSERT INTO Users VALUES('admin','admin')
+INSERT INTO Users VALUES('employee','employee')
+INSERT INTO Users VALUES('faculty','faculty')
+INSERT INTO Users VALUES('student','student')
 GO
 -- Inserting data into UserRole table
 INSERT INTO UserRole VALUES('Admin')
