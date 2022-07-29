@@ -169,15 +169,22 @@
                             </button>
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item">
-                                        @Html.ActionLink("Get Emp", "Index", "Employees", new { area = "" })
-                                        @Html.ActionLink("Create Emp", "Create", "Employees", new { area = "" })
-                                    </li>
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        <li class="nav-item">@Html.ActionLink("Get List", "Index", "Employees")</li>
+
                                         if (User.IsInRole("Admin") || User.IsInRole("User"))
                                         {
+                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Employees")</li>
+                                            <li class="nav-item">@Html.ActionLink("Create", "Create", "Employees")</li>
+                                        }
+                                        else if (User.IsInRole("Head") || User.IsInRole("User"))
+                                        {
+                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Employees")</li>
+                                            <li class="nav-item">@Html.ActionLink("Create", "Create", "Employees")</li>
+                                        }
+                                        if (User.IsInRole("Teacher") || User.IsInRole("User"))
+                                        {
+                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Employees")</li>
                                             <li class="nav-item">@Html.ActionLink("Create", "Create", "Employees")</li>
                                         }
                                         <li class="nav-item"><a>Hello - @User.Identity.Name</a></li>
