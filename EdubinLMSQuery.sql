@@ -24,7 +24,8 @@ CREATE TABLE Users
  ID INT PRIMARY KEY IDENTITY(1,1),
  UserName VARCHAR(50),
  UserPassword VARCHAR(50),
- 
+Email varchar(MAX) not null,
+Contact bigint not null
 )
 GO
 -- Creating Roles Table
