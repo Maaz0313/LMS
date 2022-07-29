@@ -10,7 +10,7 @@ using Edubin.Models;
 
 namespace Edubin.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class Course_DetailsController : Controller
     {
         private EdubinEntities db = new EdubinEntities();
