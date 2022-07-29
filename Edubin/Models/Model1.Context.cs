@@ -25,7 +25,6 @@ namespace Edubin.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Batch_Details> Batch_Details { get; set; }
@@ -37,5 +36,6 @@ namespace Edubin.Models
         public virtual DbSet<Student_Details> Student_Details { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

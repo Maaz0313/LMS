@@ -25,6 +25,8 @@ namespace Edubin.Models
         public int ID { get; set; }
         public string UserName { get; set; }
         public string UserPassword { get; set; }
+        public string Email { get; set; }
+        public Nullable<long> Contact { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Faculty_Details> Faculty_Details { get; set; }

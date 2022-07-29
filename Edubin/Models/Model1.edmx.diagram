@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ad0809a9539a4255a653419bc450ef6d" Name="Diagram1">
-        <EntityTypeShape EntityType="EdubinModel.User" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="EdubinModel.Department" Width="1.5" PointX="2.625" PointY="3.875" />
         <EntityTypeShape EntityType="EdubinModel.Employee" Width="1.5" PointX="0.875" PointY="3.25" />
         <AssociationConnector Association="EdubinModel.FK__Employee__Depart__3B75D760" />
@@ -25,9 +24,10 @@
         <AssociationConnector Association="EdubinModel.FK__Exam_Deta__Stude__5535A963" />
         <AssociationConnector Association="EdubinModel.FK__Exam_Resul__Exam__5812160E" />
         <AssociationConnector Association="EdubinModel.FK__Exam_Resu__Stude__59063A47" />
+        <EntityTypeShape EntityType="EdubinModel.UserRole" Width="1.5" PointX="2.625" PointY="0.5" />
+        <EntityTypeShape EntityType="EdubinModel.User" Width="1.5" PointX="4.875" PointY="0.5" />
         <AssociationConnector Association="EdubinModel.FK__Faculty_D__F_Use__44FF419A" />
         <AssociationConnector Association="EdubinModel.FK__Student_D__User___5070F446" />
-        <EntityTypeShape EntityType="EdubinModel.UserRole" Width="1.5" PointX="2.625" PointY="0.5" />
         <AssociationConnector Association="EdubinModel.FK__UserRole__UserID__5CD6CB2B" />
       </Diagram>
     </edmx:Diagrams>

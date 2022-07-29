@@ -121,6 +121,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="UserPassword" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Contact" Type="bigint" />
         </EntityType>
         <Association Name="FK__Batch_Det__Facul__47DBAE45">
           <End Role="Faculty_Details" Type="Self.Faculty_Details" Multiplicity="1" />
@@ -332,19 +334,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EdubinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Faculty_Details" Relationship="EdubinModel.FK__Faculty_D__F_Use__44FF419A" FromRole="User" ToRole="Faculty_Details" />
-          <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Student_D__User___5070F446" FromRole="User" ToRole="Student_Details" />
-          <NavigationProperty Name="UserRoles" Relationship="EdubinModel.FK__UserRole__UserID__5CD6CB2B" FromRole="User" ToRole="UserRole" />
-        </EntityType>
         <EntityContainer Name="EdubinEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Departments" EntityType="EdubinModel.Department" />
           <EntitySet Name="Employees" EntityType="EdubinModel.Employee" />
           <AssociationSet Name="FK__Employee__Depart__3B75D760" Association="EdubinModel.FK__Employee__Depart__3B75D760">
@@ -391,6 +381,8 @@
             <End Role="Student_Details" EntitySet="Student_Details" />
             <End Role="Exam_Result" EntitySet="Exam_Result" />
           </AssociationSet>
+          <EntitySet Name="UserRoles" EntityType="EdubinModel.UserRole" />
+          <EntitySet Name="Users" EntityType="EdubinModel.User" />
           <AssociationSet Name="FK__Faculty_D__F_Use__44FF419A" Association="EdubinModel.FK__Faculty_D__F_Use__44FF419A">
             <End Role="User" EntitySet="Users" />
             <End Role="Faculty_Details" EntitySet="Faculty_Details" />
@@ -399,7 +391,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Student_Details" EntitySet="Student_Details" />
           </AssociationSet>
-          <EntitySet Name="UserRoles" EntityType="EdubinModel.UserRole" />
           <AssociationSet Name="FK__UserRole__UserID__5CD6CB2B" Association="EdubinModel.FK__UserRole__UserID__5CD6CB2B">
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
@@ -634,6 +625,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="EdubinModel.FK__UserRole__UserID__5CD6CB2B" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="Int64" />
+          <NavigationProperty Name="Faculty_Details" Relationship="EdubinModel.FK__Faculty_D__F_Use__44FF419A" FromRole="User" ToRole="Faculty_Details" />
+          <NavigationProperty Name="Student_Details" Relationship="EdubinModel.FK__Student_D__User___5070F446" FromRole="User" ToRole="Student_Details" />
+          <NavigationProperty Name="UserRoles" Relationship="EdubinModel.FK__UserRole__UserID__5CD6CB2B" FromRole="User" ToRole="UserRole" />
+        </EntityType>
         <Association Name="FK__Faculty_D__F_Use__44FF419A">
           <End Type="EdubinModel.User" Role="User" Multiplicity="1" />
           <End Type="EdubinModel.Faculty_Details" Role="Faculty_Details" Multiplicity="*" />
@@ -658,15 +671,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="EdubinModel.FK__UserRole__UserID__5CD6CB2B" FromRole="UserRole" ToRole="User" />
-        </EntityType>
         <Association Name="FK__UserRole__UserID__5CD6CB2B">
           <End Type="EdubinModel.User" Role="User" Multiplicity="0..1" />
           <End Type="EdubinModel.UserRole" Role="UserRole" Multiplicity="*" />
@@ -685,15 +689,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EdubinModelStoreContainer" CdmEntityContainer="EdubinEntities">
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="EdubinModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="EdubinModel.Department">
               <MappingFragment StoreEntitySet="Departments">
@@ -810,6 +805,17 @@
               <MappingFragment StoreEntitySet="UserRole">
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="EdubinModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
