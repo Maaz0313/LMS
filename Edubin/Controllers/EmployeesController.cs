@@ -20,7 +20,7 @@ namespace Edubin.Controllers
         //[Faculty]
         //[Student]
         // GET: Employees
-        [Authorize (Roles ="Admin,Employee,Student")]
+        [Authorize (Roles ="Admin")]
         public ActionResult Index()
         {
             var employees = db.Employees.Include(e => e.Department);
@@ -28,7 +28,7 @@ namespace Edubin.Controllers
         }
         
         // GET: Employees/Details/5
-        [Authorize(Roles = "Admin,Employee,Student")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -71,7 +71,7 @@ namespace Edubin.Controllers
         }
 
         // GET: Employees/Edit/5
-        [Authorize(Roles = "Admin,Employee,Student")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace Edubin.Controllers
         // POST: Employees/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin,Employee,Student")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmpID,Name,Gender,Age,Position,HireDate,Salary,DepartmentId")] Employee employee)
