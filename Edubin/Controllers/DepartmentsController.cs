@@ -38,14 +38,14 @@ namespace Edubin.Controllers
             return View(department);
         }
 
-        [Authorize(Roles = "head")]
+        [Authorize(Roles = "Admin")]
         // GET: Departments/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "head")]
+        [Authorize(Roles = "Admin")]
         // POST: Departments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

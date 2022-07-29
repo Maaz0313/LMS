@@ -179,13 +179,13 @@
                                         }
                                         else if (User.IsInRole("Head") || User.IsInRole("User"))
                                         {
-                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Employees")</li>
-                                            <li class="nav-item">@Html.ActionLink("Create", "Create", "Employees")</li>
+                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Departments")</li>
+                                            <li class="nav-item">@Html.ActionLink("Edit", "Edit", "Departments")</li>
                                         }
                                         if (User.IsInRole("Teacher") || User.IsInRole("User"))
                                         {
-                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Employees")</li>
-                                            <li class="nav-item">@Html.ActionLink("Create", "Create", "Employees")</li>
+                                            <li class="nav-item">@Html.ActionLink("Get List", "Index", "Faculty_Details")</li>
+                                            <li class="nav-item">@Html.ActionLink("Edit", "Edit", "Faculty_Details")</li>
                                         }
                                         <li class="nav-item"><a>Hello - @User.Identity.Name</a></li>
                                         <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Accounts")</li>
