@@ -23,7 +23,8 @@ CREATE TABLE Users
 (
  ID INT PRIMARY KEY IDENTITY(1,1),
  UserName VARCHAR(50),
- UserPassword VARCHAR(50)
+ UserPassword VARCHAR(50),
+ 
 )
 GO
 -- Creating Roles Table
@@ -48,7 +49,7 @@ Gender VARCHAR(50),
 Age INT,
 Position VARCHAR(50),
 --Office VARCHAR(50),
-HireDate VARCHAR(50),
+HireDate DATE,
 Salary INT,
 DepartmentId INT FOREIGN KEY REFERENCES Departments(DeptID)
 )
