@@ -7,11 +7,11 @@ using System.Web.Security;
 using Edubin.Models;
 
 namespace Edubin.Controllers
-{   [AllowAnonymous]
+{   
+    [AllowAnonymous]
     public class AccountsController : Controller
     {
         // GET: Accounts
-        
         public ActionResult Signup()
         {
             return View();
