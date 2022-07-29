@@ -10,7 +10,7 @@ using Edubin.Models;
 
 namespace Edubin.Controllers
 {
-    [Authorize]
+    [Authorize] //MUST USE
     public class DepartmentsController : Controller
     {
         private EdubinEntities db = new EdubinEntities();

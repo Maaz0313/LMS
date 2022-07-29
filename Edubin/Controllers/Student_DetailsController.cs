@@ -10,7 +10,7 @@ using Edubin.Models;
 
 namespace Edubin.Controllers
 {
-    [AllowAnonymous]
+    [AllowAnonymous] //MUST USE
     public class Student_DetailsController : Controller
     {
         private EdubinEntities db = new EdubinEntities();

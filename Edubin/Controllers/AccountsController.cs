@@ -8,7 +8,7 @@ using Edubin.Models;
 
 namespace Edubin.Controllers
 {   
-    [AllowAnonymous]
+    [AllowAnonymous] //MUST USE
     public class AccountsController : Controller
     {
         // GET: Accounts
