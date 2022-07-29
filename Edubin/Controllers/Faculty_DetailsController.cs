@@ -15,7 +15,7 @@ namespace Edubin.Controllers
     {
         private EdubinEntities db = new EdubinEntities();
 
-        [Authorize(Roles = "teacher")]
+        //ALL CAN VIEW THIS
         // GET: Faculty_Details
         public ActionResult Index()
         {
@@ -23,7 +23,7 @@ namespace Edubin.Controllers
             return View(faculty_Details.ToList());
         }
 
-        [Authorize(Roles = "teacher")]
+        //ALL CAN VIEW THIS
         // GET: Faculty_Details/Details/5
         public ActionResult Details(int? id)
         {

@@ -20,16 +20,16 @@ namespace Edubin.Controllers
         //[HOD]
         //[Faculty]
         //[Student]
+        //ALL CAN VIEW THIS
         // GET: Employees
-        [Authorize (Roles ="admin")]
         public ActionResult Index()
         {
             var employees = db.Employees.Include(e => e.Department);
             return View(employees.ToList());
         }
-        
+
+        //ALL CAN VIEW THIS
         // GET: Employees/Details/5
-        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)

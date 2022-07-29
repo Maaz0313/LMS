@@ -15,14 +15,14 @@ namespace Edubin.Controllers
     {
         private EdubinEntities db = new EdubinEntities();
 
-        [Authorize(Roles = "head")]
+        //ALL CAN VIEW THIS
         // GET: Departments
         public ActionResult Index()
         {
             return View(db.Departments.ToList());
         }
 
-        [Authorize(Roles = "head")]
+        //ALL CAN VIEW THIS
         // GET: Departments/Details/5
         public ActionResult Details(int? id)
         {
